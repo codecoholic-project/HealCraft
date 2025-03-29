@@ -7,11 +7,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "service")
-public class ServiceEntity {
-	
+@Table(name = "department")
+public class DepartmentEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	private String name;
@@ -19,8 +18,6 @@ public class ServiceEntity {
 	private String description;
 	
 	private boolean active;
-	
-	private boolean prime;
 
 	public Long getId() {
 		return id;
@@ -53,20 +50,19 @@ public class ServiceEntity {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-
-	public boolean isPrime() {
-		return prime;
-	}
-
-	public void setPrime(boolean prime) {
-		this.prime = prime;
-	}
-
+	
 	@Override
 	public String toString() {
-		return "ServiceEntity [id=" + id + ", name=" + name + ", description=" + description + ", active=" + active
-				+ ", prime=" + prime + "]";
+		return "DepartmentEntity [id=" + id + ", name=" + name + ", description=" + description + ", active=" + active
+				+ "]";
 	}
 	
-
 }
+
+
+
+
+
+
+
+
