@@ -1,5 +1,8 @@
 package com.web.HealCraft.common.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +39,33 @@ public class ServicesServiceImpl implements ServicesService{
 			throw new Exception("Could not save");
 		}
 	}
+
+	@Override
+	public List<Services> getAllService() throws Exception {
+		
+		List<Services> serviceList = new ArrayList<Services>();
+		try
+		{
+			List<ServiceEntity> serviceEntityList = serviceDao.findAll();
+			//for(int i = 0; i<serviceEntityList.size(); i++)
+			for(ServiceEntity entity : serviceEntityList)
+			{
+				Services services = new Services();
+				services.setId(entity.getId());
+				services.setName(entity.getName());
+				services.setDescription(entity.getDescription());
+				services.setActive(entity.isActive());
+				services.setPrime(entity.isPrime());
+				serviceList.add(services);
+			}
+			return serviceList;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			throw new Exception("Could not get services");
+		}
+	}
+	
 
 }

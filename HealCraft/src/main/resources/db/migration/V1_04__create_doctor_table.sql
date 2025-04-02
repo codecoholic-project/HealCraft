@@ -6,7 +6,8 @@ CREATE TABLE doctor(
 	about 		varchar(500), 
 	consultant 	boolean 		default false,
 	dept_id		int				NOT NULL,
-	
-	Foreign key(dept_id) references Department(id)
+	hospi_id    int             NOT NULL,
+	Foreign key(dept_id) references department(id),
+	Foreign key(hospi_id) references hospital(id)
 	
 	)

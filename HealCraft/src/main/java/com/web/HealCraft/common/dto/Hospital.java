@@ -1,18 +1,7 @@
-package com.web.HealCraft.common.entity;
+package com.web.HealCraft.common.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+public class Hospital {
 
-
-@Entity
-@Table(name = "hospital")
-public class HospitalEntity {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String name;
@@ -89,4 +78,3 @@ public class HospitalEntity {
 				+ ", contact=" + contact + ", email=" + email + ", url=" + url + "]";
 	}
 }
-

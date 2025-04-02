@@ -1,22 +1,20 @@
 package com.web.HealCraft.common.dto;
 
-public class Services {
-	
-	private long id;
+public class Department {
+
+private Long id;
 	
 	private String name;
 	
 	private String description;
 	
 	private boolean active;
-	
-	private boolean prime;
-	
-	public long getId() {
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -44,18 +42,9 @@ public class Services {
 		this.active = active;
 	}
 
-	public boolean isPrime() {
-		return prime;
-	}
-
-	public void setPrime(boolean prime) {
-		this.prime = prime;
-	}
-
 	@Override
 	public String toString() {
-		return "Service [name=" + name + ", description=" + description + ", active=" + active + ", prime=" + prime
-				+ "]";
+		return "Department [id=" + id + ", name=" + name + ", description=" + description + ", active=" + active + "]";
 	}
 	
-}
+	}
