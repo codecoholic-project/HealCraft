@@ -2,7 +2,7 @@ package com.web.HealCraft.common.dto;
 
 public class Department {
 
-private Long id;
+	private Long id;
 	
 	private String name;
 	

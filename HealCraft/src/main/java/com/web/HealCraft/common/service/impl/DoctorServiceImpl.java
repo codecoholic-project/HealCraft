@@ -27,6 +27,7 @@ public class DoctorServiceImpl implements DoctorService{
 			entity.setAbout(doc.getAbout());
 			entity.setConsultant(doc.isConsultant());
 			entity.setDeptId(doc.getDeptId());
+			entity.setHospiId(doc.getHospiId());
 			
 			doctorDao.save(entity);
 			

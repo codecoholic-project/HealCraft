@@ -25,6 +25,8 @@ public class DoctorEntity {
 	private String  about;
 	
 	private Long	deptId;
+	
+	private Long    hospiId;
 
 	public Long getId() {
 		return id;
@@ -82,11 +84,25 @@ public class DoctorEntity {
 		this.deptId = deptId;
 	}
 
+	public Long getHospiId() {
+		return hospiId;
+	}
+
+	public void setHospiId(Long hospiId) {
+		this.hospiId = hospiId;
+	}
+
 	@Override
 	public String toString() {
 		return "DoctorEntity [id=" + id + ", name=" + name + ", degree=" + degree + ", experience=" + experience
-				+ ", consultant=" + consultant + ", about=" + about + ", deptId=" + deptId + "]";
+				+ ", consultant=" + consultant + ", about=" + about + ", deptId=" + deptId + ", hospiId=" + hospiId
+				+ "]";
 	}
+	
+
+
+	
+	
 
 }
 
