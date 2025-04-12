@@ -14,9 +14,9 @@ public class Doctor {
 	
 	private String  about;
 	
-	private Long	deptId;
+	private Long deptId;
 	
-	private Long    hospiId;
+	private Long hospiId;
 
 	public Long getId() {
 		return id;

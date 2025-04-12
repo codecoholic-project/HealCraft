@@ -1,6 +1,8 @@
 package com.web.HealCraft.common.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.web.HealCraft.common.dao.HospitalDao;
@@ -39,5 +41,9 @@ public class HospitalServiceImpl implements HospitalService{
 			throw new Exception("0");
 		}
 	}
+@Override
+public List<HospitalEntity>getAllHospitals(){
+	return hospitalDao.findAll();
+}
 
 }

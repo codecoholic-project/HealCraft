@@ -1,6 +1,8 @@
 package com.web.HealCraft.common.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,8 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.web.HealCraft.common.dto.Hospital;
+import com.web.HealCraft.common.entity.HospitalEntity;
 import com.web.HealCraft.common.service.HospitalService;
+import org.springframework.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import java.util.ArrayList;
 
+import java.util.ArrayList;
+import java.util.List;
 @RestController
 @RequestMapping("/hospital")
 public class HospitalController {
@@ -32,6 +40,13 @@ public class HospitalController {
 		}
 		
 	}
+	
+	@GetMapping("/get-all-hospitals")
+	public List<HospitalEntity>getAllHospitals(){
+		return hospital.getAllHospitals();
+	}
+	
+	
 
 }
 

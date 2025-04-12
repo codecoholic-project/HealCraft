@@ -1,12 +1,15 @@
 package com.web.HealCraft.common.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
+import org.springframework.stereotype.Service;
 import com.web.HealCraft.common.dao.DoctorDao;
 import com.web.HealCraft.common.dto.Doctor;
 import com.web.HealCraft.common.entity.DoctorEntity;
 import com.web.HealCraft.common.service.DoctorService;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Service
 public class DoctorServiceImpl implements DoctorService{
@@ -37,6 +40,29 @@ public class DoctorServiceImpl implements DoctorService{
 		{
 			e.printStackTrace();
 			throw new Exception("Could not save");
+		}
+	}
+	
+	@Override
+	public List<Doctor>getAllDoctors() throws Exception{
+		try {
+			List<DoctorEntity>entities=doctorDao.findAll();
+			return entities.stream().map(entity->{Doctor doc= new Doctor();
+			doc.setId(entity.getId());
+			doc.setName(entity.getName());
+			doc.setDegree(entity.getDegree());
+			doc.setExperience(entity.getExperience());
+			doc.setConsultant(entity.isConsultant());
+			doc.setAbout(entity.getAbout());
+			doc.setDeptId(entity.getDeptId());
+			doc.setHospiId(entity.getHospiId());
+			
+			return doc;
+			}).collect(Collectors.toList());
+			}
+		catch(Exception e){
+			e.printStackTrace();
+			throw new Exception("COULD NOT RETRIEVE DOCTORS");
 		}
 	}
 
