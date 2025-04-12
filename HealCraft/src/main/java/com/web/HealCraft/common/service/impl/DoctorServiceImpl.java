@@ -7,6 +7,8 @@ import com.web.HealCraft.common.dao.DoctorDao;
 import com.web.HealCraft.common.dto.Doctor;
 import com.web.HealCraft.common.entity.DoctorEntity;
 import com.web.HealCraft.common.service.DoctorService;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,22 +46,27 @@ public class DoctorServiceImpl implements DoctorService{
 	}
 	
 	@Override
-	public List<Doctor>getAllDoctors() throws Exception{
-		try {
-			List<DoctorEntity>entities=doctorDao.findAll();
-			return entities.stream().map(entity->{Doctor doc= new Doctor();
-			doc.setId(entity.getId());
-			doc.setName(entity.getName());
-			doc.setDegree(entity.getDegree());
-			doc.setExperience(entity.getExperience());
-			doc.setConsultant(entity.isConsultant());
-			doc.setAbout(entity.getAbout());
-			doc.setDeptId(entity.getDeptId());
-			doc.setHospiId(entity.getHospiId());
-			
-			return doc;
-			}).collect(Collectors.toList());
+	public List<Doctor>getAllDoctors() throws Exception
+	{
+		List<Doctor> doctorList = new ArrayList<Doctor>();
+		try 
+		{
+			List<DoctorEntity> entities = doctorDao.findAll();
+			for(DoctorEntity entity : entities)
+			{
+				Doctor doc = new Doctor();
+				doc.setId(entity.getId());
+				doc.setName(entity.getName());
+				doc.setDegree(entity.getDegree());
+				doc.setExperience(entity.getExperience());
+				doc.setConsultant(entity.isConsultant());
+				doc.setAbout(entity.getAbout());
+				doc.setDeptId(entity.getDeptId());
+				doc.setHospiId(entity.getHospiId());
+				doctorList.add(doc);
 			}
+			return doctorList;
+		}
 		catch(Exception e){
 			e.printStackTrace();
 			throw new Exception("COULD NOT RETRIEVE DOCTORS");

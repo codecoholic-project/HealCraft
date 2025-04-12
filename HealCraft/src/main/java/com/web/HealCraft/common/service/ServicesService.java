@@ -10,4 +10,6 @@ public interface ServicesService {
 	
 	public List<Services> getAllService() throws Exception;
 
+	public Services getServicesById(Long sid) throws Exception;
+
 }

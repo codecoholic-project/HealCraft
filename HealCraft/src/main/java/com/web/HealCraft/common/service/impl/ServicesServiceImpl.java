@@ -2,6 +2,7 @@ package com.web.HealCraft.common.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,12 +23,28 @@ public class ServicesServiceImpl implements ServicesService{
 		
 		try
 		{
+			Long ssid = serv.getId();
 			ServiceEntity entity = new ServiceEntity();
-			entity.setId(null);
-			entity.setName(serv.getName());
-			entity.setDescription(serv.getDescription());
-			entity.setActive(serv.isActive());
-			entity.setPrime(serv.isPrime());
+			if(serv.getId() == 0)
+			{
+				entity.setName(serv.getName());
+				entity.setDescription(serv.getDescription());
+				entity.setActive(serv.isActive());
+				entity.setPrime(serv.isPrime());
+			}
+			else
+			{
+				Optional<ServiceEntity> servEntity = serviceDao.findById(serv.getId());
+				if(servEntity.isPresent())
+				{
+					entity = servEntity.get();
+					entity.setName(serv.getName());
+					entity.setDescription(serv.getDescription());
+					entity.setActive(serv.isActive());
+					entity.setPrime(serv.isPrime());
+				}
+				
+			}
 			
 			serviceDao.save(entity);
 			
@@ -59,6 +76,39 @@ public class ServicesServiceImpl implements ServicesService{
 				serviceList.add(services);
 			}
 			return serviceList;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			throw new Exception("Could not get services");
+		}
+	}
+
+	@Override
+	public Services getServicesById(Long sid) throws Exception {
+		
+		Services serv = new Services();
+		try
+		{
+			Optional<ServiceEntity> servEntity = serviceDao.findById(sid);
+			if(servEntity.isPresent())
+			{
+				ServiceEntity entity = servEntity.get();
+				serv.setId(entity.getId());
+				serv.setName(entity.getName());
+				serv.setDescription(entity.getDescription());
+				serv.setActive(entity.isActive());
+				serv.setPrime(entity.isPrime());
+			}
+			else
+			{
+				throw new NullPointerException();
+			}
+			return serv;
+		}
+		catch(NullPointerException en)
+		{
+			throw new Exception("Given ID is not found");
 		}
 		catch(Exception e)
 		{
