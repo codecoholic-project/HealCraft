@@ -1,9 +1,12 @@
 package com.web.HealCraft.common.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,6 +21,9 @@ public class DepartmentEntity {
 	private String description;
 	
 	private boolean active;
+	
+	@ManyToMany(mappedBy = "departments")
+    private List<HospitalEntity> hospitals;
 
 	public Long getId() {
 		return id;
@@ -51,12 +57,20 @@ public class DepartmentEntity {
 		this.active = active;
 	}
 	
+	public List<HospitalEntity> getHospitals() {
+		return hospitals;
+	}
+
+	public void setHospitals(List<HospitalEntity> hospitals) {
+		this.hospitals = hospitals;
+	}
+
 	@Override
 	public String toString() {
 		return "DepartmentEntity [id=" + id + ", name=" + name + ", description=" + description + ", active=" + active
-				+ "]";
+				+ ", hospitals=" + hospitals + "]";
 	}
-	
+
 }
 
 

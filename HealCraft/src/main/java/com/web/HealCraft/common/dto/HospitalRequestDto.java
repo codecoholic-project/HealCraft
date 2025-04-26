@@ -1,6 +1,8 @@
 package com.web.HealCraft.common.dto;
 
-public class Hospital {
+import java.util.List;
+
+public class HospitalRequestDto {
 
 	private Long id;
 	
@@ -15,6 +17,8 @@ public class Hospital {
 	private String email;
 	  
 	private String url;
+	
+	private List<Long> departmentIds;
 
 	public Long getId() {
 		return id;
@@ -71,10 +75,20 @@ public class Hospital {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	
+	public List<Long> getDepartmentIds() {
+		return departmentIds;
+	}
+
+	public void setDepartmentIds(List<Long> departmentIds) {
+		this.departmentIds = departmentIds;
+	}
 
 	@Override
 	public String toString() {
-		return "HospitalEntity [id=" + id + ", name=" + name + ", description=" + description + ", address=" + address
-				+ ", contact=" + contact + ", email=" + email + ", url=" + url + "]";
+		return "Hospital [id=" + id + ", name=" + name + ", description=" + description + ", address=" + address
+				+ ", contact=" + contact + ", email=" + email + ", url=" + url + ", departmentIds=" + departmentIds
+				+ "]";
 	}
+
 }

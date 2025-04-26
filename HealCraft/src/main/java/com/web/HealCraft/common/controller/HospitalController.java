@@ -1,5 +1,6 @@
 package com.web.HealCraft.common.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.web.HealCraft.common.dto.Hospital;
+import com.web.HealCraft.common.dto.HospitalRequestDto;
+import com.web.HealCraft.common.dto.HospitalResponseDto;
 import com.web.HealCraft.common.entity.HospitalEntity;
 import com.web.HealCraft.common.service.HospitalService;
+
+
 @RestController
 @RequestMapping("/hospital")
 public class HospitalController {
@@ -22,7 +26,7 @@ public class HospitalController {
 	private HospitalService hospital;
 	
 	@PostMapping("/add-hospital")
-	public ResponseEntity<String> addHospital(@RequestBody Hospital hospi)
+	public ResponseEntity<String> addHospital(@RequestBody HospitalRequestDto hospi)
 	{
 		try
 		{
@@ -37,8 +41,17 @@ public class HospitalController {
 	}
 	
 	@GetMapping("/get-all-hospitals")
-	public List<HospitalEntity>getAllHospitals(){
-		return hospital.getAllHospitals();
+	public ResponseEntity<List<HospitalResponseDto>> getAllHospitals()
+	{
+		try
+		{
+			List<HospitalResponseDto> response = hospital.getAllHospitals();
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		}
+		catch(Exception e)
+		{
+			return new ResponseEntity<>(new ArrayList<HospitalResponseDto>(), HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	

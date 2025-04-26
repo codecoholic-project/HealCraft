@@ -1,9 +1,15 @@
 package com.web.HealCraft.common.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 
 
@@ -26,6 +32,14 @@ public class HospitalEntity {
 	private String email;
 	  
 	private String url;
+	
+	@ManyToMany
+    @JoinTable(
+        name = "hospital_department",
+        joinColumns = @JoinColumn(name = "hospital_id"),
+        inverseJoinColumns = @JoinColumn(name = "department_id")
+    )
+    private List<DepartmentEntity> departments = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -82,11 +96,20 @@ public class HospitalEntity {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	
+	public List<DepartmentEntity> getDepartments() {
+		return departments;
+	}
+
+	public void setDepartments(List<DepartmentEntity> departments) {
+		this.departments = departments;
+	}
 
 	@Override
 	public String toString() {
 		return "HospitalEntity [id=" + id + ", name=" + name + ", description=" + description + ", address=" + address
-				+ ", contact=" + contact + ", email=" + email + ", url=" + url + "]";
+				+ ", contact=" + contact + ", email=" + email + ", url=" + url + ", departments=" + departments + "]";
 	}
+
 }
 

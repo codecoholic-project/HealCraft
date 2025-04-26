@@ -1,12 +1,13 @@
 package com.web.HealCraft.common.service;
 
-import com.web.HealCraft.common.dto.Hospital;
-import com.web.HealCraft.common.entity.HospitalEntity;
-
 import java.util.List;
+
+import com.web.HealCraft.common.dto.HospitalRequestDto;
+import com.web.HealCraft.common.dto.HospitalResponseDto;
 public interface HospitalService {
 	
-	public void saveHospital(Hospital hospi) throws Exception;
-	List<HospitalEntity>getAllHospitals();
+	public void saveHospital(HospitalRequestDto hospi) throws Exception;
+	
+	public List<HospitalResponseDto> getAllHospitals() throws Exception;
 
 }
