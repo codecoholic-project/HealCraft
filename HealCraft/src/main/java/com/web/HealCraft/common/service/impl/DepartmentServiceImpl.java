@@ -2,6 +2,7 @@ package com.web.HealCraft.common.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,10 +25,24 @@ public class DepartmentServiceImpl implements DepartmentService{
 		try
 		{
 			DepartmentEntity entity = new DepartmentEntity();
-			entity.setId(null);
-			entity.setName(dept.getName());
-			entity.setDescription(dept.getDescription());
-			entity.setActive(dept.isActive());
+			if(dept.getId() == null )
+			{
+				entity.setName(dept.getName());
+				entity.setDescription(dept.getDescription());
+				entity.setActive(dept.isActive());
+			}
+			else
+			{
+				Optional<DepartmentEntity> deptEntity = departmentDao.findById(dept.getId());
+				if(deptEntity.isPresent())
+				{
+					entity = deptEntity.get();
+					entity.setName(dept.getName());
+					entity.setDescription(dept.getDescription());
+					entity.setActive(dept.isActive());
+				}
+				
+			}
 			
 			departmentDao.save(entity);
 			
@@ -92,7 +107,64 @@ public class DepartmentServiceImpl implements DepartmentService{
 		}
 	}
 
+	@Override
+	public Department getDepartmentById(Long sid) throws Exception {
+		
+		Department dept = new Department();
+		try
+		{
+			Optional<DepartmentEntity> deptEntity = departmentDao.findById(sid);
+			if(deptEntity.isPresent())
+			{
+				DepartmentEntity entity = deptEntity.get();
+				dept.setId(entity.getId());
+				dept.setName(entity.getName());
+				dept.setDescription(entity.getDescription());
+				dept.setActive(entity.isActive());
+			}
+			else
+			{
+				throw new NullPointerException();
+			}
+			return dept;
+		}
+		catch(NullPointerException en)
+		{
+			throw new Exception("Given ID is not found");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			throw new Exception("Could not get department");
+		}
+	}
+	
+	@Override
+	public void deleteDepartmentById(Long sid) throws Exception {
+		try
+		{
+			Optional<DepartmentEntity> deptEntity = departmentDao.findById(sid);
+			if(deptEntity.isPresent())
+			{
+				DepartmentEntity entity = deptEntity.get();
+				departmentDao.delete(entity);
+			}
+			else
+			{
+				System.out.println("Department ID does not exist.");
+				throw new Exception("Department ID does not exist.");
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			throw new Exception("Could not get department");
+		}
+	}
+	
 }
+
+
 
 
 

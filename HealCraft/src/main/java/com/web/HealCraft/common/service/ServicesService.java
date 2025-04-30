@@ -12,4 +12,6 @@ public interface ServicesService {
 
 	public Services getServicesById(Long sid) throws Exception;
 
+	public void deleteServicesById(Long sid) throws Exception;
+
 }

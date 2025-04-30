@@ -23,9 +23,8 @@ public class ServicesServiceImpl implements ServicesService{
 		
 		try
 		{
-			Long ssid = serv.getId();
 			ServiceEntity entity = new ServiceEntity();
-			if(serv.getId() == 0)
+			if(serv.getId() == null)
 			{
 				entity.setName(serv.getName());
 				entity.setDescription(serv.getDescription());
@@ -109,6 +108,29 @@ public class ServicesServiceImpl implements ServicesService{
 		catch(NullPointerException en)
 		{
 			throw new Exception("Given ID is not found");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			throw new Exception("Could not get services");
+		}
+	}
+
+	@Override
+	public void deleteServicesById(Long sid) throws Exception{
+		try
+		{
+			Optional<ServiceEntity> servEntity = serviceDao.findById(sid);
+			if(servEntity.isPresent())
+			{
+				ServiceEntity entity = servEntity.get();
+				serviceDao.delete(entity);
+			}
+			else
+			{
+				System.out.println("Service ID does not exist.");
+				throw new Exception("Service ID does not exist.");
+			}
 		}
 		catch(Exception e)
 		{

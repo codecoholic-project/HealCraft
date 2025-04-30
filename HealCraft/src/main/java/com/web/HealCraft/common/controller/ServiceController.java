@@ -71,6 +71,22 @@ public class ServiceController {
 			return new ResponseEntity<>(new Services(), HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@GetMapping("/delete-services/{sid}")
+	public ResponseEntity<String> deleteServiceById(@PathVariable Long sid)
+	{
+		System.out.println("API /delete-services/{sid} called with id : "+ sid);
+		
+		try
+		{
+			service.deleteServicesById(sid);
+			return new ResponseEntity<>("success", HttpStatus.OK);
+		}
+		catch(Exception e)
+		{
+			return new ResponseEntity<>("can not delete", HttpStatus.BAD_REQUEST);
+		}
+	}
 
 }
 

@@ -1,6 +1,6 @@
 package com.web.HealCraft.common.dto;
 
-public class Doctor {
+public class DoctorRequestDto {
 	
 	private Long id;
 	

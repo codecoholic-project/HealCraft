@@ -13,5 +13,9 @@ public interface DepartmentService {
 	public List<Department> getAllDepartment() throws Exception;
 	
 	public List<DepartmentDisplay> getActiveDepartment() throws Exception;
+	
+	public Department getDepartmentById(Long sid) throws Exception;
+	
+	public void deleteDepartmentById(Long sid) throws Exception;
 
 }

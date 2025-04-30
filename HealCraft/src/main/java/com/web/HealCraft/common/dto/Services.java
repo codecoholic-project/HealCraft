@@ -2,7 +2,7 @@ package com.web.HealCraft.common.dto;
 
 public class Services {
 	
-	private long id;
+	private Long id;
 	
 	private String name;
 	
@@ -12,11 +12,11 @@ public class Services {
 	
 	private boolean prime;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

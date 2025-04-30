@@ -98,6 +98,7 @@ public class HospitalServiceImpl implements HospitalService{
 						dept.setActive(d.isActive());
 						departments.add(dept);
 					});
+					dto.setDepartments(departments);
 					response.add(dto);
 				}
 			}
