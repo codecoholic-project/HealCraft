@@ -4,7 +4,7 @@ import java.util.List;
 
 public class HospitalResponseDto {
 	
-private Long id;
+	private Long id;
 	
 	private String name;
 		

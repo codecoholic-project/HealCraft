@@ -2,6 +2,7 @@ package com.web.HealCraft.common.service;
 
 import java.util.List;
 
+
 import com.web.HealCraft.common.dto.HospitalRequestDto;
 import com.web.HealCraft.common.dto.HospitalResponseDto;
 public interface HospitalService {
@@ -9,5 +10,9 @@ public interface HospitalService {
 	public void saveHospital(HospitalRequestDto hospi) throws Exception;
 	
 	public List<HospitalResponseDto> getAllHospitals() throws Exception;
+
+	public HospitalResponseDto getHospitalById(Long sid) throws Exception;
+	
+	public void deleteHospitalById(Long sid) throws Exception;
 
 }

@@ -116,4 +116,64 @@ public class HospitalServiceImpl implements HospitalService{
 		return response;
 	}
 
+	@Override
+	public HospitalResponseDto getHospitalById(Long sid) throws Exception {
+		
+		HospitalResponseDto hospi = new HospitalResponseDto();
+		try
+		{
+			Optional<HospitalEntity> hospiEntity = hospitalDao.findById(sid);
+			if(hospiEntity.isPresent())
+			{
+				HospitalEntity entity = hospiEntity.get();
+				hospi.setId(entity.getId());
+				hospi.setName(entity.getName());
+				hospi.setDescription(entity.getDescription());
+				hospi.setAddress(entity.getAddress());
+				hospi.setContact(entity.getContact());
+				hospi.setEmail(entity.getEmail());
+				hospi.setUrl(entity.getUrl());
+			}
+			else
+			{
+				throw new NullPointerException();
+			}
+			return hospi;
+		}
+		catch(NullPointerException en)
+		{
+			throw new Exception("Given ID is not found");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			throw new Exception("Could not get hospital");
+		}
+	}
+	
+	@Override
+	public void deleteHospitalById(Long sid) throws Exception {
+		try
+		{
+			Optional<HospitalEntity> hospiEntity = hospitalDao.findById(sid);
+			if(hospiEntity.isPresent())
+			{
+				HospitalEntity entity = hospiEntity.get();
+				hospitalDao.delete(entity);
+			}
+			else
+			{
+				System.out.println("Hospital ID does not exist.");
+				throw new Exception("Hospital ID does not exist.");
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			throw new Exception("Could not get hospital");
+		}
+	}
+	
 }
+
+

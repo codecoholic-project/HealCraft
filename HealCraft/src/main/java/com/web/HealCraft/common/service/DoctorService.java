@@ -12,10 +12,10 @@ public interface DoctorService {
 	
 	List<DoctorResponseDto> getAllDoctors() throws Exception;
 	
-	/*
-	 * public Doctor getDoctorById(Long sid) throws Exception;
-	 * 
-	 * public void deleteDoctorById(Long sid) throws Exception;
+	
+	 public DoctorResponseDto getDoctorById(Long sid) throws Exception;
+	 /*
+	  public void deleteDoctorById(Long sid) throws Exception;
 	 */
 
 }

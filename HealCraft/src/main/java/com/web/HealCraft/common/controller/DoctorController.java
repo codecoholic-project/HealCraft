@@ -57,23 +57,23 @@ public class DoctorController {
 		}
 	}
 	
-	/*
+	
 	@GetMapping("/get-doctor/{sid}")
-	public ResponseEntity<Doctor> getDoctorById(@PathVariable Long sid)
+	public ResponseEntity<DoctorResponseDto> getDoctorById(@PathVariable Long sid)
 	{
 		System.out.println("API /get-doctor/{sid} called with id : "+sid);
 		try
 		{ 
-			Doctor doc = doctor.getDoctorById(sid);
-			return new ResponseEntity<Doctor>(doc, HttpStatus.OK);
+			DoctorResponseDto doc = doctor.getDoctorById(sid);
+			return new ResponseEntity<DoctorResponseDto>(doc, HttpStatus.OK);
 		}
 		catch(Exception e)
 		{
-			return new ResponseEntity<>(new Doctor(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(new DoctorResponseDto(), HttpStatus.BAD_REQUEST);
 		}
 		
 	}
-	
+	/*
 	@GetMapping("/delete-doctor/{sid}")
 	public ResponseEntity<String> deleteDoctorById(@PathVariable Long sid)
 	{

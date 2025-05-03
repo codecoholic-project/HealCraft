@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,7 @@ import com.web.HealCraft.common.service.HospitalService;
 
 @RestController
 @RequestMapping("/hospital")
+@CrossOrigin(origins = "http://localhost:5175")
 public class HospitalController {
 	
 	@Autowired
@@ -54,7 +57,35 @@ public class HospitalController {
 		}
 	}
 	
-	
+	@GetMapping("/get-hospital/{sid}")
+	public ResponseEntity<HospitalResponseDto> getHospitalById(@PathVariable Long sid)
+	{
+		System.out.println("API /get-hospital/{sid} called with id : "+sid);
+		try
+		{
+			HospitalResponseDto hospi = hospital.getHospitalById(sid);
+			return new ResponseEntity<HospitalResponseDto>(hospi, HttpStatus.OK);
+		}
+		catch(Exception e)
+		{
+			return new ResponseEntity<>(new HospitalResponseDto(), HttpStatus.BAD_REQUEST);
+		}
+	}
 
+	@GetMapping("/delete-hospital/{sid}")
+	public ResponseEntity<String> deleteDepartmentById(@PathVariable Long sid)
+	{
+		System.out.println("API /delete-hospital/{sid} called with id : "+sid);
+		
+		try
+		{
+			hospital.deleteHospitalById(sid);
+			return new ResponseEntity<>("success", HttpStatus.OK);
+		}
+		catch(Exception e)
+		{
+			return new ResponseEntity<>("cannot delete", HttpStatus.BAD_REQUEST);
+		}
+	}
 }
 

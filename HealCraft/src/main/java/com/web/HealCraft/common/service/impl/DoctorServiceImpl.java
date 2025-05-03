@@ -130,11 +130,11 @@ public class DoctorServiceImpl implements DoctorService{
 		}
 	}
 	
-	/*
+	
 	@Override
-	public Doctor getDoctorById(Long sid) throws Exception {
+	public DoctorResponseDto getDoctorById(Long sid) throws Exception {
 		
-		Doctor doc = new Doctor();
+		DoctorResponseDto doc = new DoctorResponseDto();
 		try
 		{
 			Optional<DoctorEntity> docEntity = doctorDao.findById(sid);
@@ -147,8 +147,24 @@ public class DoctorServiceImpl implements DoctorService{
 				doc.setExperience(entity.getExperience());
 				doc.setConsultant(entity.isConsultant());
 				doc.setAbout(entity.getAbout());
-				doc.setDeptId(entity.getDeptId());
-				doc.setHospiId(entity.getHospiId());
+				Optional<DepartmentEntity> deptEntityOptional = deptDao.findById(entity.getDeptId());
+				if(deptEntityOptional.isPresent())
+				{
+					DepartmentEntity dentity = deptEntityOptional.get();
+					DepartmentDisplay dept = new DepartmentDisplay();
+					dept.setId(dentity.getId());
+					dept.setName(dentity.getName());
+					doc.setDepartment(dept);
+				}
+				Optional<HospitalEntity> hospEntityOptional = hospiDao.findById(entity.getHospiId());
+				if(hospEntityOptional.isPresent())
+				{
+					HospitalEntity hentity = hospEntityOptional.get();
+					HospitalResponseDto hosp = new HospitalResponseDto();
+					hosp.setId(hentity.getId());
+					hosp.setName(hentity.getName());
+					doc.setHospital(hosp);
+				}	
 			}
 			else
 			{
@@ -167,8 +183,10 @@ public class DoctorServiceImpl implements DoctorService{
 		}
 	}
 
+	/*
 	@Override
-	public void deleteDoctorById(Long sid) throws Exception{
+	public void deleteDoctorById(Long sid) throws Exception {
+		
 		try
 		{
 			Optional<DoctorEntity> docEntity = doctorDao.findById(sid);
@@ -189,8 +207,6 @@ public class DoctorServiceImpl implements DoctorService{
 			throw new Exception("Could not get doctor");
 		}
 	}
-/*
- * 
- * 
- */
+*/
+	
 }
