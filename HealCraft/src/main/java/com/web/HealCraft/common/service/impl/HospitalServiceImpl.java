@@ -133,6 +133,16 @@ public class HospitalServiceImpl implements HospitalService{
 				hospi.setContact(entity.getContact());
 				hospi.setEmail(entity.getEmail());
 				hospi.setUrl(entity.getUrl());
+				List<Department> departments = new ArrayList<Department>();
+				entity.getDepartments().forEach(d -> {
+					Department dept = new Department();
+					dept.setId(d.getId());
+					dept.setName(d.getName());
+					dept.setDescription(d.getDescription());
+					dept.setActive(d.isActive());
+					departments.add(dept);
+				});
+				hospi.setDepartments(departments);
 			}
 			else
 			{

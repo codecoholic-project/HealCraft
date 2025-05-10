@@ -73,7 +73,7 @@ public class DoctorController {
 		}
 		
 	}
-	/*
+	
 	@GetMapping("/delete-doctor/{sid}")
 	public ResponseEntity<String> deleteDoctorById(@PathVariable Long sid)
 	{
@@ -89,5 +89,5 @@ public class DoctorController {
 			return new ResponseEntity<>("cannot delete", HttpStatus.BAD_REQUEST);
 		}
 	}
-	*/
+	
 }

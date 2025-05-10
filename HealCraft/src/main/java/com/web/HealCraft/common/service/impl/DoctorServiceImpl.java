@@ -183,7 +183,7 @@ public class DoctorServiceImpl implements DoctorService{
 		}
 	}
 
-	/*
+	
 	@Override
 	public void deleteDoctorById(Long sid) throws Exception {
 		
@@ -207,6 +207,6 @@ public class DoctorServiceImpl implements DoctorService{
 			throw new Exception("Could not get doctor");
 		}
 	}
-*/
+
 	
 }

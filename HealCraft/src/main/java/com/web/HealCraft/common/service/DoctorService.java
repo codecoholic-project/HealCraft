@@ -14,8 +14,8 @@ public interface DoctorService {
 	
 	
 	 public DoctorResponseDto getDoctorById(Long sid) throws Exception;
-	 /*
+	 
 	  public void deleteDoctorById(Long sid) throws Exception;
-	 */
+	 
 
 }
