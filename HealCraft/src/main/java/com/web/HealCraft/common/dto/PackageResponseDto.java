@@ -2,15 +2,15 @@ package com.web.HealCraft.common.dto;
 
 public class PackageResponseDto {
 
-private Long id;
+	private Long id;
 	
 	private String name;
 	
-	private String price;
+	private Double price;
 	
-	private RoomType roomtype;
+	private String roomtype;
 	
-	private FoodType foodtype;
+	private String foodtype;
 	
 	private boolean nursefacility;
 	
@@ -40,27 +40,27 @@ private Long id;
 		this.name = name;
 	}
 
-	public String getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
-	public RoomType getRoomtype() {
+	public String getRoomtype() {
 		return roomtype;
 	}
 
-	public void setRoomtype(RoomType roomtype) {
+	public void setRoomtype(String roomtype) {
 		this.roomtype = roomtype;
 	}
 
-	public FoodType getFoodtype() {
+	public String getFoodtype() {
 		return foodtype;
 	}
 
-	public void setFoodtype(FoodType foodtype) {
+	public void setFoodtype(String foodtype) {
 		this.foodtype = foodtype;
 	}
 

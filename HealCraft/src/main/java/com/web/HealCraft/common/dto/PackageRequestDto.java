@@ -8,15 +8,15 @@ public class PackageRequestDto {
 	
 	private Double price;
 	
-	private RoomType roomtype;
+	private String roomType;
 	
-	private FoodType foodtype;
+	private String foodType;
 	
-	private boolean nursefacility;
+	private boolean nurseFacility;
 	
-	private boolean pickdrop;
+	private boolean pickDrop;
 	
-	private boolean postcare;
+	private boolean postCare;
 	
 	private boolean physiotherapy;
 	
@@ -48,44 +48,44 @@ public class PackageRequestDto {
 		this.price = price;
 	}
 
-	public RoomType getRoomtype() {
-		return roomtype;
+	public String getRoomType() {
+		return roomType;
 	}
 
-	public void setRoomtype(RoomType roomtype) {
-		this.roomtype = roomtype;
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
 	}
 
-	public FoodType getFoodtype() {
-		return foodtype;
+	public String getFoodType() {
+		return foodType;
 	}
 
-	public void setFoodtype(FoodType foodtype) {
-		this.foodtype = foodtype;
+	public void setFoodType(String foodType) {
+		this.foodType = foodType;
 	}
 
-	public boolean isNursefacility() {
-		return nursefacility;
+	public boolean isNurseFacility() {
+		return nurseFacility;
 	}
 
-	public void setNursefacility(boolean nursefacility) {
-		this.nursefacility = nursefacility;
+	public void setNurseFacility(boolean nurseFacility) {
+		this.nurseFacility = nurseFacility;
 	}
 
-	public boolean isPickdrop() {
-		return pickdrop;
+	public boolean isPickDrop() {
+		return pickDrop;
 	}
 
-	public void setPickdrop(boolean pickdrop) {
-		this.pickdrop = pickdrop;
+	public void setPickDrop(boolean pickDrop) {
+		this.pickDrop = pickDrop;
 	}
 
-	public boolean isPostcare() {
-		return postcare;
+	public boolean isPostCare() {
+		return postCare;
 	}
 
-	public void setPostcare(boolean postcare) {
-		this.postcare = postcare;
+	public void setPostCare(boolean postCare) {
+		this.postCare = postCare;
 	}
 
 	public boolean isPhysiotherapy() {
@@ -114,11 +114,10 @@ public class PackageRequestDto {
 
 	@Override
 	public String toString() {
-		return "PackageRequestDto [id=" + id + ", name=" + name + ", price=" + price + ", roomtype=" + roomtype
-				+ ", foodtype=" + foodtype + ", nursefacility=" + nursefacility + ", pickdrop=" + pickdrop
-				+ ", postcare=" + postcare + ", physiotherapy=" + physiotherapy + ", departmentId=" + departmentId
+		return "PackageRequestDto [id=" + id + ", name=" + name + ", price=" + price + ", roomType=" + roomType
+				+ ", foodType=" + foodType + ", nurseFacility=" + nurseFacility + ", pickDrop=" + pickDrop
+				+ ", postCare=" + postCare + ", physiotherapy=" + physiotherapy + ", departmentId=" + departmentId
 				+ ", hospitalId=" + hospitalId + "]";
 	}
-	
-	
+
 }
