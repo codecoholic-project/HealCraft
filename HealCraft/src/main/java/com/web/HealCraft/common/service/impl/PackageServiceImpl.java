@@ -182,6 +182,28 @@ public class PackageServiceImpl implements PackageService{
 			throw new Exception("Could not get package");
 		}
 	}
+	@Override
+	public void deletePackageById(Long sid) throws Exception {
+		try
+		{
+			Optional<PackageEntity> pckgEntity = packageDao.findById(sid);
+			if(pckgEntity.isPresent())
+			{
+				PackageEntity entity = pckgEntity.get();
+				packageDao.delete(entity);
+			}
+			else
+			{
+				System.out.println("Package ID does not exist.");
+				throw new Exception("Package ID does not exist.");
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			throw new Exception("Could not get package");
+		}
+	}
 }
 
 

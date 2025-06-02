@@ -11,5 +11,5 @@ public interface PackageService {
 	List<PackageResponseDto> getAllPackages() throws Exception;
 	
 	public PackageResponseDto getPackageById(Long sid) throws Exception;
-
+	public void deletePackageById(Long sid) throws Exception;
 }

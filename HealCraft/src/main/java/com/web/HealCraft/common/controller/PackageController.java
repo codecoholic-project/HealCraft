@@ -68,6 +68,21 @@ public class PackageController {
 			return new ResponseEntity<>(new PackageResponseDto(), HttpStatus.BAD_REQUEST);
 		}
 	}
+	@GetMapping("/delete-package/{sid}")
+	public ResponseEntity<String> deletePackageById(@PathVariable Long sid)
+	{
+		System.out.println("API /delete-package/{sid} called with id : "+sid);
+		
+		try
+		{
+			packageService.deletePackageById(sid);
+			return new ResponseEntity("success", HttpStatus.OK);
+		}
+		catch(Exception e)
+		{
+			return new ResponseEntity<>("cannot delete", HttpStatus.BAD_GATEWAY);
+		}
+	}
 	
 
 }
