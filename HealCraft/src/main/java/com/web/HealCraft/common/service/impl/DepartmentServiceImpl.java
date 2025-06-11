@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.web.HealCraft.common.dao.DepartmentDao;
 import com.web.HealCraft.common.dto.Department;
 import com.web.HealCraft.common.dto.DepartmentDisplay;
+import com.web.HealCraft.common.dto.HospitalDisplay;
 import com.web.HealCraft.common.entity.DepartmentEntity;
 import com.web.HealCraft.common.service.DepartmentService;
 
@@ -121,6 +122,7 @@ public class DepartmentServiceImpl implements DepartmentService{
 				dept.setName(entity.getName());
 				dept.setDescription(entity.getDescription());
 				dept.setActive(entity.isActive());
+				
 			}
 			else
 			{
@@ -159,6 +161,29 @@ public class DepartmentServiceImpl implements DepartmentService{
 		{
 			e.printStackTrace();
 			throw new Exception("Could not get department");
+		}
+	}
+	
+	@Override
+	public List<HospitalDisplay> getHospitalByDepartment(Long deptId) throws Exception
+	{
+		List<HospitalDisplay> responseHospitalList = new ArrayList<HospitalDisplay>();
+		try
+		{
+			List<Object[]> hospitalList = departmentDao.fetchActiveHospitalsByDepartment(deptId);
+			for(Object[] objArr : hospitalList)
+			{
+				HospitalDisplay display = new HospitalDisplay();
+				display.setId(Long.valueOf(objArr[0].toString()));
+				display.setName(objArr[1].toString());
+				responseHospitalList.add(display);
+			}
+			return responseHospitalList;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			throw new Exception("could not get hospital");
 		}
 	}
 	

@@ -1,5 +1,6 @@
 package com.web.HealCraft.common.service;
 
+import com.web.HealCraft.common.dto.PackageDisplay;
 import com.web.HealCraft.common.dto.PackageRequestDto;
 import com.web.HealCraft.common.dto.PackageResponseDto;
 
@@ -12,4 +13,5 @@ public interface PackageService {
 	
 	public PackageResponseDto getPackageById(Long sid) throws Exception;
 	public void deletePackageById(Long sid) throws Exception;
+	public List<PackageDisplay> getPackageByHospitalAndDepartment(Long hospId, Long deptId) throws Exception;
 }

@@ -1,5 +1,7 @@
 package com.web.HealCraft.common.dto;
 
+import java.util.List;
+
 public class PackageResponseDto {
 
 	private Long id;
@@ -23,6 +25,10 @@ public class PackageResponseDto {
 	private DepartmentDisplay department;
 	
 	private HospitalDisplay  hospital;
+	
+	private List<String> foodTypeList;
+	
+	private List<String> roomTypeList;
 
 	public Long getId() {
 		return id;
@@ -111,13 +117,29 @@ public class PackageResponseDto {
 	public void setHospital(HospitalDisplay hospital) {
 		this.hospital = hospital;
 	}
+	
+	public List<String> getFoodTypeList() {
+		return foodTypeList;
+	}
+
+	public void setFoodTypeList(List<String> foodTypeList) {
+		this.foodTypeList = foodTypeList;
+	}
+
+	public List<String> getRoomTypeList() {
+		return roomTypeList;
+	}
+
+	public void setRoomTypeList(List<String> roomTypeList) {
+		this.roomTypeList = roomTypeList;
+	}
 
 	@Override
 	public String toString() {
 		return "PackageResponseDto [id=" + id + ", name=" + name + ", price=" + price + ", roomtype=" + roomtype
 				+ ", foodtype=" + foodtype + ", nursefacility=" + nursefacility + ", pickdrop=" + pickdrop
 				+ ", postcare=" + postcare + ", physiotherapy=" + physiotherapy + ", department=" + department
-				+ ", hospital=" + hospital + "]";
+				+ ", hospital=" + hospital + ", foodTypeList=" + foodTypeList + ", roomTypeList=" + roomTypeList + "]";
 	}
 	
 }

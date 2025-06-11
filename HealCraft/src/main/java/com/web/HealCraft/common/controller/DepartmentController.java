@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.web.HealCraft.common.dto.Department;
 import com.web.HealCraft.common.dto.DepartmentDisplay;
+import com.web.HealCraft.common.dto.HospitalDisplay;
 import com.web.HealCraft.common.service.DepartmentService;
 
 @RestController
@@ -100,6 +101,21 @@ public class DepartmentController {
 		}
 	}
 
+	@GetMapping("/get-hospital-by-department/{did}")
+	public ResponseEntity<List<HospitalDisplay>> getHospitalByDepartment(@PathVariable Long did)
+	{
+		System.out.println("API /get-hospital-by-department/{did} called with id :"+ did);
+		
+		try
+		{
+			List<HospitalDisplay> hospitalList = department.getHospitalByDepartment(did);
+			return new ResponseEntity<List<HospitalDisplay>>(hospitalList, HttpStatus.OK);
+		}
+		catch(Exception e)
+		{
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
 
 }
 

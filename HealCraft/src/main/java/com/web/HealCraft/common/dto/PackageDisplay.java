@@ -1,11 +1,13 @@
 package com.web.HealCraft.common.dto;
 
-public class HospitalDisplay {
+public class PackageDisplay {
 	
 	private Long id;
 	
 	private String name;
-
+	
+	private Double price;
+	
 	public Long getId() {
 		return id;
 	}
@@ -22,9 +24,17 @@ public class HospitalDisplay {
 		this.name = name;
 	}
 
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
 	@Override
 	public String toString() {
-		return "DepartmentDisplay [id=" + id + ", name=" + name + "]";
+		return "PackageDisplay [id=" + id + ", name=" + name + ", price=" + price + "]";
 	}
 
 }

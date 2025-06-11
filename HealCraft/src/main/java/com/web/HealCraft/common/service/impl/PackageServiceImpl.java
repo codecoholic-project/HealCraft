@@ -3,9 +3,12 @@ package com.web.HealCraft.common.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,7 @@ import com.web.HealCraft.common.dao.PackageDao;
 import com.web.HealCraft.common.dto.DepartmentDisplay;
 import com.web.HealCraft.common.dto.FoodType;
 import com.web.HealCraft.common.dto.HospitalDisplay;
+import com.web.HealCraft.common.dto.PackageDisplay;
 import com.web.HealCraft.common.dto.PackageRequestDto;
 import com.web.HealCraft.common.dto.PackageResponseDto;
 import com.web.HealCraft.common.dto.RoomType;
@@ -47,6 +51,7 @@ public class PackageServiceImpl implements PackageService{
 				entity.setFoodType(FoodType.idFromName(pckg.getFoodType().toString()));
 				entity.setNurseFacility(pckg.isNurseFacility());
 				entity.setPickDrop(pckg.isPickDrop());
+				entity.setPostCare(pckg.isPostCare());
 				entity.setPhysiotherapy(pckg.isPhysiotherapy());
 				entity.setDepartmentId(pckg.getDepartmentId());
 				entity.setHospitalId(pckg.getHospitalId());
@@ -63,6 +68,7 @@ public class PackageServiceImpl implements PackageService{
 					entity.setFoodType(FoodType.idFromName(pckg.getFoodType().toString()));
 					entity.setNurseFacility(pckg.isNurseFacility());
 					entity.setPickDrop(pckg.isPickDrop());
+					entity.setPostCare(pckg.isPostCare());
 					entity.setPhysiotherapy(pckg.isPhysiotherapy());
 					entity.setDepartmentId(pckg.getDepartmentId());
 					entity.setHospitalId(pckg.getHospitalId());
@@ -99,6 +105,7 @@ public class PackageServiceImpl implements PackageService{
 				pckg.setFoodtype(FoodType.nameFromId(entity.getFoodType()));
 				pckg.setNursefacility(entity.isNurseFacility());
 				pckg.setPickdrop(entity.isPickDrop());
+				pckg.setPostcare(entity.isPostCare());
 				pckg.setPhysiotherapy(entity.isPhysiotherapy());
 				Optional<DepartmentEntity> deptEntityOptional = departmentDao.findById(entity.getDepartmentId());
 				if(deptEntityOptional.isPresent())
@@ -118,6 +125,20 @@ public class PackageServiceImpl implements PackageService{
 					hosp.setName(hentity.getName());
 					pckg.setHospital(hosp);
 				}
+				List<String> ftList = new ArrayList<String>();
+				for(FoodType ft : FoodType.values())
+				{
+					ftList.add(FoodType.nameFromId(ft));
+				}
+				pckg.setFoodTypeList(ftList);
+				
+				List<String> rtList = new ArrayList<String>();
+				for(RoomType rt : RoomType.values())
+				{
+					rtList.add(RoomType.nameFromId(rt));
+				}
+				pckg.setRoomTypeList(rtList);
+				
 				packageList.add(pckg);
 			}
 			return packageList;
@@ -146,6 +167,7 @@ public class PackageServiceImpl implements PackageService{
 				pckg.setFoodtype(FoodType.nameFromId(entity.getFoodType()));
 				pckg.setNursefacility(entity.isNurseFacility());
 				pckg.setPickdrop(entity.isPickDrop());
+				pckg.setPostcare(entity.isPostCare());
 				pckg.setPhysiotherapy(entity.isPhysiotherapy());
 				Optional<DepartmentEntity> deptEntityOptional = departmentDao.findById(entity.getDepartmentId());
 				if(deptEntityOptional.isPresent())
@@ -165,6 +187,20 @@ public class PackageServiceImpl implements PackageService{
 					hosp.setName(hentity.getName());
 					pckg.setHospital(hosp);
 				}
+				
+				List<String> ftList = new ArrayList<String>();
+				for(FoodType ft : FoodType.values())
+				{
+					ftList.add(FoodType.nameFromId(ft));
+				}
+				pckg.setFoodTypeList(ftList);
+				
+				List<String> rtList = new ArrayList<String>();
+				for(RoomType rt : RoomType.values())
+				{
+					rtList.add(RoomType.nameFromId(rt));
+				}
+				pckg.setRoomTypeList(rtList);
 			}
 			else
 			{
@@ -203,6 +239,32 @@ public class PackageServiceImpl implements PackageService{
 			e.printStackTrace();
 			throw new Exception("Could not get package");
 		}
+	}
+	
+	@Override
+	public List<PackageDisplay> getPackageByHospitalAndDepartment(Long hospId, Long deptId) throws Exception
+	{
+		List<PackageDisplay> responsePackageList = new ArrayList<PackageDisplay>();
+		try
+		{
+			List<PackageEntity> packList = packageDao.getpackageByHospitalAndDepartment(hospId,deptId);
+			for(PackageEntity pack : packList)
+			{
+				PackageDisplay display = new PackageDisplay();
+				display.setId(pack.getId());
+				display.setName(pack.getName());
+				display.setPrice(pack.getPrice());
+				responsePackageList.add(display);
+				
+			}
+			return responsePackageList ;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			throw new Exception("COULD NOT GET PACKAGES");
+		}
+		
 	}
 }
 
